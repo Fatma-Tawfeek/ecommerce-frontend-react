@@ -7,13 +7,14 @@ import {
 
 import MainLayout from "./layouts/MainLayouy";
 import "./App.css";
+import HomePage from "./pages/HomePage";
 
 function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" element={<MainLayout />}>
-                {/* <Route index element={<HomePage />} />
-                <Route path="/jobs" element={<JobsPage />} />
+                <Route index element={<HomePage />} />
+                {/* <Route path="/jobs" element={<JobsPage />} />
                 <Route
                     path="/jobs/:id"
                     element={<JobPage deleteJob={deleteJob} />}

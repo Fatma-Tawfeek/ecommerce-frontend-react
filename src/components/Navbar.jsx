@@ -27,7 +27,7 @@ const Navbar = () => {
                     </NavLink>
                     {/* <!-- Cart --> */}
                     <div className="flex items-center justify-center gap-4">
-                        <button to="/cart" className={linkClass}>
+                        <button to="/cart">
                             <img src={cart} alt="cart" className="w-6" />
                         </button>
                     </div>
