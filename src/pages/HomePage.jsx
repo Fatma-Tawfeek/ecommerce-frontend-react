@@ -4,7 +4,6 @@ import { GET_PRODUCTS } from "../graphql/queries";
 
 const HomePage = () => {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
-    if (loading) return "Loading...";
     if (error) return `Error! ${error.message}`;
     return (
         <>
@@ -12,9 +11,11 @@ const HomePage = () => {
                 <div className="container">
                     <h1 className="text-4xl mb-5">ALL</h1>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {data.products.map((product) => (
-                            <ProductCard product={product} key={product.id} />
-                        ))}
+                        {loading
+                            ? "Loading..."
+                            : data.products.map((product) => (
+                                  <ProductCard product={product} key={product.id} />
+                              ))}
                     </div>
                 </div>
             </section>
