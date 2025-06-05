@@ -54,16 +54,18 @@ const ProductDetailsPage = () => {
                                             </p>
                                         </div>
                                         {/* add to cart btn  */}
-                                        <button
-                                            disabled={!allAttributesSelected}
-                                            className={`px-6 py-3 rounded w-full cursor-pointer hover:bg-[#6ed388] ${
-                                                allAttributesSelected
-                                                    ? "bg-primary text-white"
-                                                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                            }`}
-                                        >
-                                            Add to Cart
-                                        </button>
+                                        {data.product.inStock && (
+                                            <button
+                                                disabled={!allAttributesSelected}
+                                                className={`px-6 py-3 rounded w-full ${
+                                                    allAttributesSelected
+                                                        ? "bg-primary text-white hover:bg-[#6ed388] cursor-pointer "
+                                                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                                }`}
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        )}
                                         {/* description  */}
                                         <div className="font-roboto my-5">
                                             {parse(data.product.description)}

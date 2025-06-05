@@ -13,7 +13,9 @@ const ProductCard = ({ product }) => {
                     />
                     {!product.inStock && (
                         <div className="absolute top-0 left-0 w-full h-full bg-white/50 text-[#8D8F9A] flex items-center justify-center">
-                            <p className="uppercase text-2xl font-light">out of stock</p>
+                            <p className="uppercase text-2xl font-light bg-white/60 p-1 rounded-full">
+                                out of stock
+                            </p>
                         </div>
                     )}
                     {product.inStock && (
