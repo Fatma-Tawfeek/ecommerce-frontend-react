@@ -45,3 +45,32 @@ export const GET_CATEGORY_PRODUCTS = gql`
         }
     }
 `;
+
+export const GET_PRODUCT_DETAILS = gql`
+    query GetProductDetails($productId: Int!) {
+        product(id: $productId) {
+            id
+            name
+            description
+            brand
+            inStock
+            gallery
+            category
+            prices {
+                amount
+                currency {
+                    label
+                    symbol
+                }
+            }
+            attributes {
+                name
+                type
+                values {
+                    label
+                    rendered
+                }
+            }
+        }
+    }
+`;
