@@ -3,6 +3,7 @@ import { clearCart } from "../store/cartSlice";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../graphql/mutations";
 import CartProductCard from "./CartProductCard";
+import Spinner from "./Spinner";
 
 const CartOverlay = ({ isCartOpen }) => {
     const cart = useSelector((state) => state.cart.items);
@@ -75,7 +76,7 @@ const CartOverlay = ({ isCartOpen }) => {
                     }`}
                     onClick={handlePlaceOrder}
                 >
-                    {loading ? "Loading..." : "Place order"}
+                    {loading ? <Spinner loading={loading} color="#fff" size={20} /> : "Place order"}
                 </button>
             </div>
         </>

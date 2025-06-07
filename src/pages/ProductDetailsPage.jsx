@@ -7,6 +7,7 @@ import ProductAttributes from "../components/ProductAttributes";
 import ImageCarousel from "../components/ImageCarousel";
 import { addToCart, openCart } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
+import Spinner from "../components/Spinner";
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
@@ -28,7 +29,7 @@ const ProductDetailsPage = () => {
         <section>
             <div className="container">
                 {loading ? (
-                    "Loading..."
+                    <Spinner loading={loading} />
                 ) : (
                     <>
                         <section className="py-10">

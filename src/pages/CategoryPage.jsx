@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import ProductCard from "../components/ProductCard";
 import { useParams } from "react-router-dom";
 import { GET_CATEGORY_PRODUCTS } from "../graphql/queries";
+import Spinner from "../components/Spinner";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -14,7 +15,7 @@ const CategoryPage = () => {
             <section className="py-10">
                 <div className="container">
                     {loading ? (
-                        "Loading..."
+                        <Spinner loading={loading} />
                     ) : (
                         <>
                             <h1 className="text-4xl mb-5 uppercase">

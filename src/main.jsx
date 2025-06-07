@@ -11,8 +11,6 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-// redux provider
-
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <ApolloProvider client={client}>

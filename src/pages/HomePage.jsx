@@ -1,6 +1,7 @@
 import ProductCard from "../components/ProductCard";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS } from "../graphql/queries";
+import Spinner from "../components/Spinner";
 
 const HomePage = () => {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -11,11 +12,13 @@ const HomePage = () => {
                 <div className="container">
                     <h1 className="text-4xl mb-5">ALL</h1>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {loading
-                            ? "Loading..."
-                            : data.products.map((product) => (
-                                  <ProductCard product={product} key={product.id} />
-                              ))}
+                        {loading ? (
+                            <Spinner loading={loading} />
+                        ) : (
+                            data.products.map((product) => (
+                                <ProductCard product={product} key={product.id} />
+                            ))
+                        )}
                     </div>
                 </div>
             </section>
