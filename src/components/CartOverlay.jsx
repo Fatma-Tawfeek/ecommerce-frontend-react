@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, decrementQty, incrementQty } from "../store/cartSlice";
-import parse from "html-react-parser";
+import { clearCart } from "../store/cartSlice";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../graphql/mutations";
+import CartProductCard from "./CartProductCard";
 
 const CartOverlay = ({ isCartOpen }) => {
     const cart = useSelector((state) => state.cart.items);
@@ -49,70 +49,7 @@ const CartOverlay = ({ isCartOpen }) => {
                     {totalItemsCount === 0 ? (
                         <p className="font-raleway text-gray-500">Cart is empty</p>
                     ) : (
-                        cart.map((item) => (
-                            <div key={item.productId} className="flex justify-between gap-2 mb-5">
-                                <div className="w-[70%] flex justify-between gap-2">
-                                    <div className="flex flex-col gap-2">
-                                        <p className="text-xl">{item.product.name}</p>
-                                        <p className="font-bold">
-                                            ${item.product.prices[0].amount}
-                                        </p>
-                                        <div className="flex flex-col gap-2 my-3">
-                                            {item.product.attributes.map((attr) => (
-                                                <div key={attr.name}>
-                                                    <h4 className="font-bold text-sm mb-1">
-                                                        {attr.name}:
-                                                    </h4>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {attr.values.map((val, i) => {
-                                                            const isSelected =
-                                                                item.selectedAttributes[
-                                                                    attr.name
-                                                                ] === val.label;
-                                                            return (
-                                                                <button
-                                                                    key={i}
-                                                                    className={`border-2 min-w-8 min-h-8 ${
-                                                                        isSelected
-                                                                            ? "border-black"
-                                                                            : "border-gray-300"
-                                                                    }`}
-                                                                >
-                                                                    {parse(val.rendered)}
-                                                                </button>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col justify-between items-center text-xl">
-                                        <button
-                                            className="border-1 border-black w-8 h-8 cursor-pointer"
-                                            onClick={() => dispatch(incrementQty(item.productId))}
-                                        >
-                                            +
-                                        </button>
-                                        <p>{item.quantity}</p>
-
-                                        <button
-                                            className="border-1 border-black w-8 h-8 cursor-pointer"
-                                            onClick={() => dispatch(decrementQty(item.productId))}
-                                        >
-                                            -
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="w-[30%]">
-                                    <img
-                                        src={item.product.gallery[0]}
-                                        className="w-full"
-                                        alt={item.product.name}
-                                    />
-                                </div>
-                            </div>
-                        ))
+                        cart.map((item) => <CartProductCard key={item.productId} item={item} />)
                     )}
                 </div>
                 {/* total price  */}
