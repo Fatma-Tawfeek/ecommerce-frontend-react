@@ -21,7 +21,7 @@ const ProductAttributes = ({ attributes, onChange }) => {
                                 <button
                                     key={i}
                                     onClick={() => handleSelect(attr.name, val.label)}
-                                    className={`border-2 overflow-hidden ${
+                                    className={`border-2 min-w-8 min-h-8 ${
                                         isActive ? "border-black" : "border-gray-300"
                                     }`}
                                 >

@@ -43,16 +43,16 @@ const CartOverlay = ({ isCartOpen }) => {
                                                                     attr.name
                                                                 ] === val.label;
                                                             return (
-                                                                <div
+                                                                <button
                                                                     key={i}
-                                                                    className={`border-2 text-sm overflow-hidden ${
+                                                                    className={`border-2 min-w-8 min-h-8 ${
                                                                         isSelected
                                                                             ? "border-black"
                                                                             : "border-gray-300"
                                                                     }`}
                                                                 >
                                                                     {parse(val.rendered)}
-                                                                </div>
+                                                                </button>
                                                             );
                                                         })}
                                                     </div>
