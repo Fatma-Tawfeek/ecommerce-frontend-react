@@ -1,5 +1,6 @@
 import { useState } from "react";
 import parse from "html-react-parser";
+import { toKebabCase } from "../helpers/stringHelper";
 
 const ProductAttributes = ({ attributes, onChange }) => {
     const [selected, setSelected] = useState({});
@@ -12,7 +13,7 @@ const ProductAttributes = ({ attributes, onChange }) => {
     return (
         <div className="flex flex-col gap-4 my-6">
             {attributes.map((attr) => (
-                <div key={attr.name}>
+                <div key={attr.name} data-testid={`product-attribute-${toKebabCase(attr.name)}`}>
                     <h4 className="font-bold font-roboto mb-2">{attr.name}:</h4>
                     <div className="flex gap-3 flex-wrap">
                         {attr.values.map((val, i) => {

@@ -30,7 +30,15 @@ const Navbar = () => {
                         {/* <!-- Navigation --> */}
                         <div className="flex items-center justify-center gap-4">
                             <NavLink to="/" className={linkClass}>
-                                All
+                                {({ isActive }) => (
+                                    <span
+                                        data-testid={
+                                            isActive ? "active-category-link" : "category-link"
+                                        }
+                                    >
+                                        ALL
+                                    </span>
+                                )}
                             </NavLink>
                             {loading
                                 ? "Loading..."
@@ -40,7 +48,17 @@ const Navbar = () => {
                                           className={linkClass}
                                           key={category.id}
                                       >
-                                          {category.name}
+                                          {({ isActive }) => (
+                                              <span
+                                                  data-testid={
+                                                      isActive
+                                                          ? "active-category-link"
+                                                          : "category-link"
+                                                  }
+                                              >
+                                                  {category.name}
+                                              </span>
+                                          )}
                                       </NavLink>
                                   ))}
                         </div>
@@ -56,6 +74,7 @@ const Navbar = () => {
                                 onClick={() => {
                                     dispatch(toggleCart());
                                 }}
+                                data-testid="cart-btn"
                             >
                                 <img src={cart} alt="cart" className="w-6" />
                                 {/* cart count  */}

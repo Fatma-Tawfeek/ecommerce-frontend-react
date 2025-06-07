@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import whiteCart from "../assets/white-cart.png";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import { toKebabCase } from "../helpers/stringHelper";
 
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
 
     return (
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} data-testid={`product-${toKebabCase(product.name)}`}>
             <div className="font-raleway p-4 rounded flex flex-col gap-3 group hover:shadow-lg transition duration-300 ease-in-out">
                 {/* product image  */}
                 <div className="h-80 w-full relative rounded">

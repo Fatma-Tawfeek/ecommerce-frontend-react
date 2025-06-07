@@ -42,7 +42,8 @@ const CartOverlay = ({ isCartOpen }) => {
                 }`}
             >
                 <h3 className="font-raleway">
-                    <span className="font-bold">My Bag,</span> {totalItemsCount}{" "}
+                    <span className="font-bold">My Bag,</span>{" "}
+                    <span data-testid="cart-total">{totalItemsCount}</span>{" "}
                     {totalItemsCount === 1 ? "item" : "items"}
                 </h3>
                 {/* cart items */}

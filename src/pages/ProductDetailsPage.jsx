@@ -83,12 +83,16 @@ const ProductDetailsPage = () => {
                                                     );
                                                     dispatch(openCart());
                                                 }}
+                                                data-testid="add-to-cart"
                                             >
                                                 Add to Cart
                                             </button>
                                         )}
                                         {/* description  */}
-                                        <div className="font-roboto my-5">
+                                        <div
+                                            className="font-roboto my-5"
+                                            data-testid="product-description"
+                                        >
                                             {parse(data.product.description)}
                                         </div>
                                     </div>

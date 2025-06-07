@@ -10,7 +10,7 @@ const ImageCarousel = ({ gallery }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     return (
-        <>
+        <div data-testid="product-gallery">
             <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -43,7 +43,7 @@ const ImageCarousel = ({ gallery }) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-        </>
+        </div>
     );
 };
 
