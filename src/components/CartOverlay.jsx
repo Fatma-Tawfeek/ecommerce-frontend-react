@@ -1,11 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQty, incrementQty } from "../store/cartSlice";
+import { clearCart, decrementQty, incrementQty } from "../store/cartSlice";
 import parse from "html-react-parser";
+import { useMutation } from "@apollo/client";
+import { CREATE_ORDER } from "../graphql/mutations";
 
 const CartOverlay = ({ isCartOpen }) => {
     const cart = useSelector((state) => state.cart.items);
     const totalItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
     const dispatch = useDispatch();
+
+    const [createOrder, { loading, error }] = useMutation(CREATE_ORDER, {
+        onCompleted: () => {
+            dispatch(clearCart());
+            console.log("Order placed successfully!");
+        },
+        onError: (err) => {
+            console.log("Something went wrong: " + err.message);
+        },
+    });
+
+    const handlePlaceOrder = () => {
+        const formattedProducts = cart.map((item) => ({
+            productId: parseInt(item.productId),
+            quantity: item.quantity,
+            selectedAttributes: Object.entries(item.selectedAttributes).map(([name, value]) => ({
+                name,
+                value,
+            })),
+        }));
+
+        createOrder({
+            variables: { products: formattedProducts },
+        });
+    };
 
     return (
         <>
@@ -103,14 +130,15 @@ const CartOverlay = ({ isCartOpen }) => {
                 </div>
                 {/* place order btn  */}
                 <button
-                    disabled={totalItemsCount === 0}
+                    disabled={totalItemsCount === 0 || loading}
                     className={`px-6 py-3 rounded w-full uppercase ${
                         totalItemsCount === 0
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                             : "bg-primary text-white hover:bg-[#6ed388] cursor-pointer"
                     }`}
+                    onClick={handlePlaceOrder}
                 >
-                    Place Order
+                    {loading ? "Loading..." : "Place order"}
                 </button>
             </div>
         </>
