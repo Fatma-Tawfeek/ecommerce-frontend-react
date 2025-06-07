@@ -7,7 +7,7 @@ const ProductAttributes = ({ attributes, onChange }) => {
     const handleSelect = (attrName, value) => {
         const newSelected = { ...selected, [attrName]: value };
         setSelected(newSelected);
-        onChange(newSelected); // نبلغ الأب إنه حصل اختيار جديد
+        onChange(newSelected);
     };
     return (
         <div className="flex flex-col gap-4 my-6">

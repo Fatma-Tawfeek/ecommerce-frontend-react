@@ -13,6 +13,13 @@ export const GET_PRODUCTS = gql`
                     symbol
                 }
             }
+            attributes {
+                name
+                values {
+                    label
+                    rendered
+                }
+            }
         }
     }
 `;

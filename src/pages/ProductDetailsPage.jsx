@@ -5,6 +5,8 @@ import { useState } from "react";
 import parse from "html-react-parser";
 import ProductAttributes from "../components/ProductAttributes";
 import ImageCarousel from "../components/ImageCarousel";
+import { addToCart, openCart } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
@@ -17,6 +19,9 @@ const ProductDetailsPage = () => {
     const allAttributesSelected = data?.product?.attributes?.length
         ? data.product.attributes.every((attr) => selectedAttributes[attr.name])
         : false;
+
+    const dispatch = useDispatch();
+
     if (error) return `Error! ${error.message}`;
 
     return (
@@ -56,12 +61,27 @@ const ProductDetailsPage = () => {
                                         {/* add to cart btn  */}
                                         {data.product.inStock && (
                                             <button
-                                                disabled={!allAttributesSelected}
-                                                className={`px-6 py-3 rounded w-full ${
-                                                    allAttributesSelected
-                                                        ? "bg-primary text-white hover:bg-[#6ed388] cursor-pointer "
-                                                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                                disabled={
+                                                    data.product.attributes.length > 0 &&
+                                                    !allAttributesSelected
+                                                }
+                                                className={`px-6 py-3 rounded w-full uppercase ${
+                                                    data.product.attributes.length > 0 &&
+                                                    !allAttributesSelected
+                                                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                                        : "bg-primary text-white hover:bg-[#6ed388] cursor-pointer"
                                                 }`}
+                                                onClick={() => {
+                                                    dispatch(
+                                                        addToCart({
+                                                            productId: data.product.id,
+                                                            selectedAttributes,
+                                                            quantity: 1,
+                                                            product: data.product,
+                                                        })
+                                                    );
+                                                    dispatch(openCart());
+                                                }}
                                             >
                                                 Add to Cart
                                             </button>
