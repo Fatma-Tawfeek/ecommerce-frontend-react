@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayouy";
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
     const router = createBrowserRouter(
@@ -17,7 +18,7 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="/category/:categoryId" element={<CategoryPage />} />
                 <Route path="/product/:productId" element={<ProductDetailsPage />} />
-                {/* <Route path="*" element={<NotFoundPage />} /> */}
+                <Route path="*" element={<NotFoundPage />} />
             </Route>
         )
     );
