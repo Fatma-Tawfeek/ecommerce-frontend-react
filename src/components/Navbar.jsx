@@ -60,7 +60,7 @@ const Navbar = () => {
                                 <img src={cart} alt="cart" className="w-6" />
                                 {/* cart count  */}
                                 {totalItemsCount > 0 && (
-                                    <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                    <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                                         {totalItemsCount}
                                     </span>
                                 )}

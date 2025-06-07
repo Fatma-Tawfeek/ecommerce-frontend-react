@@ -12,7 +12,6 @@ const CartOverlay = ({ isCartOpen }) => {
     const [createOrder, { loading, error }] = useMutation(CREATE_ORDER, {
         onCompleted: () => {
             dispatch(clearCart());
-            console.log("Order placed successfully!");
         },
         onError: (err) => {
             console.log("Something went wrong: " + err.message);
@@ -42,7 +41,8 @@ const CartOverlay = ({ isCartOpen }) => {
                 }`}
             >
                 <h3 className="font-raleway">
-                    <span className="font-bold">My Bag,</span> {totalItemsCount} items
+                    <span className="font-bold">My Bag,</span> {totalItemsCount}{" "}
+                    {totalItemsCount === 1 ? "item" : "items"}
                 </h3>
                 {/* cart items */}
                 <div className="max-h-[400px] overflow-auto">
