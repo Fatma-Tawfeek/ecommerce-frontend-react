@@ -35,7 +35,10 @@ const ProductDetailsPage = () => {
                         <section className="py-10">
                             <div className="container">
                                 <div className="flex flex-col md:flex-row gap-10 justify-between">
-                                    <div className="w-full md:w-[60%] flex flex-col md:flex-row justify-between gap-5">
+                                    <div
+                                        className="w-full md:w-[60%] flex flex-col md:flex-row justify-between gap-5"
+                                        data-testid="product-gallery"
+                                    >
                                         {/* image carousel  */}
                                         <ImageCarousel gallery={data.product.gallery} />
                                     </div>

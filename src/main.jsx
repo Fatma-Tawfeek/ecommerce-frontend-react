@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 
 const client = new ApolloClient({
-    uri: "http://ecommerce.local/graphql",
+    uri: "https://ecommerce-backend-php-production.up.railway.app/graphql",
     cache: new InMemoryCache(),
 });
 
