@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 const CategoryPage = () => {
     const { categoryId } = useParams();
     const { loading, error, data } = useQuery(GET_CATEGORY_PRODUCTS, {
-        variables: { categoryId: parseInt(categoryId) },
+        variables: { categoryId: categoryId },
     });
     if (error) return `Error! ${error.message}`;
     return (

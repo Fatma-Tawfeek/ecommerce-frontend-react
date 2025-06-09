@@ -34,7 +34,7 @@ export const GET_CATEGORIES = gql`
 `;
 
 export const GET_CATEGORY_PRODUCTS = gql`
-    query GetProductsByCategory($categoryId: Int!) {
+    query GetProductsByCategory($categoryId: String!) {
         productsByCategory(categoryId: $categoryId) {
             categoryName
             products {

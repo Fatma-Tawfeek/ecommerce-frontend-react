@@ -40,6 +40,7 @@ const CartOverlay = ({ isCartOpen }) => {
                 className={`absolute px-4 py-6 top-[100%] right-[10%] shadow bg-white z-50 flex flex-col gap-4 w-[400px] ${
                     !isCartOpen && "hidden "
                 }`}
+                data-testid="cart-overlay"
             >
                 <h3 className="font-raleway">
                     <span className="font-bold">My Bag,</span>{" "}

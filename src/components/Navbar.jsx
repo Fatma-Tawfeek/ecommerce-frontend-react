@@ -44,7 +44,7 @@ const Navbar = () => {
                                 ? "Loading..."
                                 : data.categories.map((category) => (
                                       <NavLink
-                                          to={`/category/${category.id}`}
+                                          to={`/${category.name.toLowerCase()}`}
                                           className={linkClass}
                                           key={category.id}
                                       >

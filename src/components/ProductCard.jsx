@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
 
     return (
-        <Link to={`/product/${product.id}`} data-testid={`product-${toKebabCase(product.name)}`}>
+        <Link to={`/products/${product.id}`} data-testid={`product-${toKebabCase(product.name)}`}>
             <div className="font-raleway p-4 rounded flex flex-col gap-3 group hover:shadow-lg transition duration-300 ease-in-out">
                 {/* product image  */}
                 <div className="h-80 w-full relative rounded">
