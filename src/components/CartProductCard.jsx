@@ -38,7 +38,7 @@ const CartProductCard = ({ item }) => {
                                                 // data-testid={testId}
                                                 data-testid={`product-attribute-${toKebabCase(
                                                     attr.name
-                                                )}-${toKebabCase(val.label)}`}
+                                                )}-${val.label}`}
                                             >
                                                 {parse(val.rendered)}
                                             </button>

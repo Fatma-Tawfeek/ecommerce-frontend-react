@@ -25,9 +25,9 @@ const ProductAttributes = ({ attributes, onChange }) => {
                                     className={`border-2 min-w-8 min-h-8 ${
                                         isActive ? "border-black" : "border-gray-300"
                                     }`}
-                                    data-testid={`product-attribute-${toKebabCase(
-                                        attr.name
-                                    )}-${toKebabCase(val.label)}`}
+                                    data-testid={`product-attribute-${toKebabCase(attr.name)}-${
+                                        val.label
+                                    }`}
                                 >
                                     {parse(val.rendered)}
                                 </button>
