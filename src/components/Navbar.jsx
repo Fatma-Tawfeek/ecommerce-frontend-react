@@ -6,15 +6,20 @@ import { useQuery } from "@apollo/client";
 import CartOverlay from "./CartOverlay";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCart, closeCart } from "../store/cartSlice";
+import { useState } from "react";
 
 const Navbar = () => {
     const linkClass = ({ isActive }) =>
         isActive ? "text-primary uppercase border-b-2 border-primary py-5" : "uppercase py-5";
+    const [activeLink, setActiveLink] = useState("All");
     const { loading, error, data } = useQuery(GET_CATEGORIES);
     const dispatch = useDispatch();
     const isCartOpen = useSelector((state) => state.cart.isCartOpen);
     const cartItems = useSelector((state) => state.cart.items);
     const totalItemsCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    const handleLinkClick = (category) => {
+        setActiveLink(category);
+    };
     return (
         <>
             {/* backdrop */}
@@ -29,16 +34,15 @@ const Navbar = () => {
                     <div className="flex items-center justify-between">
                         {/* <!-- Navigation --> */}
                         <div className="flex items-center justify-center gap-4">
-                            <NavLink to="/all" className={linkClass}>
-                                {({ isActive }) => (
-                                    <span
-                                        data-testid={
-                                            isActive ? "active-category-link" : "category-link"
-                                        }
-                                    >
-                                        ALL
-                                    </span>
-                                )}
+                            <NavLink
+                                to="/all"
+                                className={linkClass}
+                                data-testid={`${
+                                    activeLink === "all" ? "active-category-link" : "category-link"
+                                }`}
+                                onClick={() => handleLinkClick("all")}
+                            >
+                                ALL
                             </NavLink>
                             {loading
                                 ? "Loading..."
@@ -47,18 +51,14 @@ const Navbar = () => {
                                           to={`/${category.name.toLowerCase()}`}
                                           className={linkClass}
                                           key={category.id}
+                                          data-testid={`${
+                                              activeLink === category.name
+                                                  ? "active-category-link"
+                                                  : "category-link"
+                                          }`}
+                                          onClick={() => handleLinkClick(category.name)}
                                       >
-                                          {({ isActive }) => (
-                                              <span
-                                                  data-testid={
-                                                      isActive
-                                                          ? "active-category-link"
-                                                          : "category-link"
-                                                  }
-                                              >
-                                                  {category.name}
-                                              </span>
-                                          )}
+                                          {category.name}
                                       </NavLink>
                                   ))}
                         </div>
