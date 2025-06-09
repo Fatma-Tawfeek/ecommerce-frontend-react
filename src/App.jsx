@@ -1,7 +1,6 @@
 import {
     createBrowserRouter,
     createRoutesFromElements,
-    Navigate,
     Route,
     RouterProvider,
 } from "react-router-dom";
@@ -17,9 +16,9 @@ function App() {
         createRoutesFromElements(
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<HomePage />} />
+                <Route path="/all" element={<HomePage />} />
                 <Route path="/:categoryId" element={<CategoryPage />} />
                 <Route path="/products/:productId" element={<ProductDetailsPage />} />
-                <Route path="/all" element={<Navigate to="/" replace />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Route>
         )

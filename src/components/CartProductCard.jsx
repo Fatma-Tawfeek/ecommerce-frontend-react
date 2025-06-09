@@ -25,17 +25,20 @@ const CartProductCard = ({ item }) => {
                                         const isSelected =
                                             item.selectedAttributes[attr.name] === val.label;
 
-                                        const attributeName = toKebabCase(attr.name);
-                                        const testId = `cart-item-attribute-${attributeName}${
-                                            isSelected ? `-${attributeName}-selected` : ""
-                                        }`;
+                                        // const attributeName = toKebabCase(attr.name);
+                                        // const testId = `cart-item-attribute-${attributeName}${
+                                        //     isSelected ? `-${attributeName}-selected` : ""
+                                        // }`;
                                         return (
                                             <button
                                                 key={i}
                                                 className={`border-2 min-w-8 min-h-8 ${
                                                     isSelected ? "border-black" : "border-gray-300"
                                                 }`}
-                                                data-testid={testId}
+                                                // data-testid={testId}
+                                                data-testid={`product-attribute-${toKebabCase(
+                                                    attr.name
+                                                )}-${toKebabCase(val.label)}`}
                                             >
                                                 {parse(val.rendered)}
                                             </button>
