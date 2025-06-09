@@ -29,7 +29,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between">
                         {/* <!-- Navigation --> */}
                         <div className="flex items-center justify-center gap-4">
-                            <NavLink to="/" className={linkClass}>
+                            <NavLink to="/all" className={linkClass}>
                                 {({ isActive }) => (
                                     <span
                                         data-testid={
