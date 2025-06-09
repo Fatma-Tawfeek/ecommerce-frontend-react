@@ -11,7 +11,7 @@ import { useState } from "react";
 const Navbar = () => {
     const linkClass = ({ isActive }) =>
         isActive ? "text-primary uppercase border-b-2 border-primary py-5" : "uppercase py-5";
-    const [activeLink, setActiveLink] = useState("All");
+    const [activeLink, setActiveLink] = useState("all");
     const { loading, error, data } = useQuery(GET_CATEGORIES);
     const dispatch = useDispatch();
     const isCartOpen = useSelector((state) => state.cart.isCartOpen);
